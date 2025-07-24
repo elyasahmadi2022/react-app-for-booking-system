@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@layer components {
+    .navItem {
+        @apply text-sm relative sm:text-xl font-poppins
+    }
+
+    .navItem-hover {
+        @apply after:absolute after:w-0 after:-top-6.5 after:left-2/4 after:h-1 after:rounded-xl after:bg-white transition-all duration-[.3s] hover:after:w-full hover:after:-left-0
+    }
+
+    .icons {
+        @apply cursor-pointer
+    }
+
+    .active {
+        @apply text-white
+    }
+}
+
+@theme {
+    --font-poppins: Poppins, sans-serif;
+}
+
+@layer base {}
+
+@layer utilities {}
+
+.helo {
+    clip-path: polygon(0 31%, 32% 31%, 32% 0, 85% 0%, 100% 0, 100% 15%, 100% 70%, 69% 70%, 69% 100%, 15% 100%, 0 100%, 0% 85%);
+}
