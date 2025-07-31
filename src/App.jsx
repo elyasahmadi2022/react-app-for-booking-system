@@ -11,6 +11,8 @@ import Cities from "./pages/Cities";
 import Services from "./pages/Services";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Hotel from "./pages/Hotel";
+import { SkeletonTheme } from "react-loading-skeleton";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -22,12 +24,17 @@ const queryClient = new QueryClient({
 function App() {
   const router = createBrowserRouter([
     {
-      element: <AppLayout />,
+      path: "/",
+      Component: AppLayout,
       errorElement: <Error />,
       children: [
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "/hotel/:id",
+          element: <Hotel />,
         },
         {
           path: "/login",
@@ -61,11 +68,12 @@ function App() {
     },
   ]);
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+    <SkeletonTheme baseColor="#f8f9fa" highlightColor="#6c757d">
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <RouterProvider router={router} />
-     
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </SkeletonTheme>
   );
 }
 

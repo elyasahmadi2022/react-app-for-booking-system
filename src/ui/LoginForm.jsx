@@ -1,3 +1,5 @@
+import { RiLockPasswordLine } from "react-icons/ri"; 
+import { HiOutlineMail } from "react-icons/hi"; 
 import { Link } from "react-router-dom";
 import Box from "./Box";
 import Button from "./Button";
@@ -15,17 +17,17 @@ export default function LoginForm() {
   }
   // setIsLoading(false)
   return (
-    <form className="h-full flex flex-col justify-center gap-4 w-full" onSubmit={handleSubmit}>
+    <form className="h-[90%] w-[90%]  flex flex-col justify-center gap-4 font-poppins" onSubmit={handleSubmit}>
       <Box>
-        <h1 className=" col-span-3 text-4xl row-span-2 text-center font-semibold font-poppins">
-          Welcome Back
-        </h1>
+        <h2 className=" mt-2  col-span-3 text-2xl max-lg:text-lg row-span-2 text-center font-semibold font-poppins">
+          happy to see u back
+        </h2>
       </Box>
       <FormRow label="email">
-        <Input id="email" type="email" placeholder="Enter Email" />
+        <Input id="email" type="email" placeholder="Enter Email" icon={<HiOutlineMail size={20} />} />
       </FormRow>
       <FormRow label="password">
-        <Input id="password" type="password" placeholder="Enter Password" />
+        <Input id="password" type="password" placeholder="Enter Password" icon={<RiLockPasswordLine size={20} />} />
       </FormRow>
       <Row>
         <div className="flex items-center gap-2 ">

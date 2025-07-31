@@ -7,12 +7,14 @@ import Acheive from "./Acheive";
 import CardRow from "../features/hotels/CardRow";
 import Modal from "./../ui/Modal";
 import Search from "../features/hotels/Search";
+import { useHotels } from "../features/hotels/useHotels";
 export default function Home() {
+  const {data} = useHotels()
   return (
     <>
       <section className="w-full min-h-screen">
-        <div className="bg-[url(../../../../public/home-landing.jpg)] bg-cover bg-top bg-no-repeat min-h-screen relative">
-          <div className="absolute inset-0 bg-black/50" />
+        <div className="bg-[url(../../../../public/home-landing.jpg)] bg-cover bg-top bg-no-repeat min-h-screen relative object-cover">
+          <div className="absolute inset-0 bg-black/50 object-cover" />
           <div className=" flex flex-col items-center justify-around  absolute top-2/20 max-sm:top-2/14 left-2/4 text-center -translate-x-2/4 w-full">
             <h1 className="   w-full p-4  font-extrabold font-poppins tracking-widest text-shadow-amber-100">
               <span className="block text-center text-4xl text-white  py-3 sm:text-5xl">
@@ -67,7 +69,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className=" w-full min-h-screen  my-20">
+    { data &&  <section className=" w-full min-h-screen  my-20">
         <div className=" py-7">
           <h1 className="font-bold text-3xl text-center py-3">
             Popular Places
@@ -78,7 +80,7 @@ export default function Home() {
           </p>
         </div>
         <CardRow />
-      </section>
+      </section>}
     </>
   );
 }

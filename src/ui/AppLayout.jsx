@@ -17,7 +17,15 @@ import Bar from "./Bar";
 import Button from "./Button";
 import LoginModal from "./LoginModal";
 import LoginForm from "./LoginForm";
+import { NavListItem } from "./NavListItem";
 export default function AppLayout() {
+  const navList = [
+    { label: "Home", path: "/" },
+    { label: "Cities", path: "/cities" },
+    { label: "Guide", path: "/guide" },
+    { label: "payment", path: "/payment" },
+    { label: "services", path: "/services" },
+  ];
   return (
     <div>
       <Header>
@@ -46,25 +54,17 @@ export default function AppLayout() {
           </div>
         </Header.Contacts>
         <Header.Navs>
-          <Logo />
-          <div className="flex justify-around w-2/5 [&>a]:text-sm sm:font-semibold  max-sm:hidden">
-            <NavLink className="navItem navItem-hover" to="/">
-              Home
-            </NavLink>
-            <NavLink className="navItem navItem-hover" to="/cities">
-              Cities
-            </NavLink>
-            <NavLink className="navItem navItem-hover" to="/guide">
-              Guide
-            </NavLink>
-            <NavLink className="navItem navItem-hover" to="/payment">
-              Payment
-            </NavLink>
-            <NavLink className="navItem navItem-hover" to="/services">
-              Services
-            </NavLink>
+          <Logo className="max-sm:hidden" />
+          <div className="flex justify-around w-2/5 [&>a]:text-sm sm:font-semibold  min-w-2/4  max-sm:hidden">
+            {navList.map((item) => (
+              <NavListItem
+                key={item.label}
+                navitem={item}
+                className={"navItem-hover hover:text-stone-100 transition-all duration-200"}
+              />
+            ))}
           </div>
-          <div className="w-10 xl:w-12 max-sm:hidden">
+          <div className="w-auto xl:w-12 max-sm:hidden">
             <LoginModal>
               <LoginModal.Toggle id="login">
                 <Button type="login">Login</Button>
@@ -77,34 +77,23 @@ export default function AppLayout() {
           <Menu>
             <Menu.Button />
             <Menu.NavList>
-              <li>
-                <NavLink className="navItem w-full  block" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="navItem w-full  block" to="/cities">
-                  Cities
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="navItem w-full  block" to="/guide">
-                  Guide
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="navItem w-full  block" to="/payment">
-                  Payment
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="navItem w-full  block" to="/services">
-                  Services
-                </NavLink>
-              </li>
-              <li className="bg-stone-950 w-full mb-0 text-white">
-                <NavLink to="/login">Login</NavLink>
-              </li>
+              {navList.map((item) => (
+                <li key={item.label}>
+                  <NavListItem navitem={item} className={"w-full  block  text-left pl-2"} />
+                </li>
+              ))}
+              
+                <LoginModal>
+                  <LoginModal.Toggle>
+                    <button className="bg-orange-400 hover:bg-orange-500 border-2 border-stone-800 cursor-pointer text-lg font-bold text-white rounded-sm  capitalize tracking-wide max-sm:py-2 max-sm:px-2 max-sm:text-[15px] w-full">
+                      Login
+                    </button>
+                  </LoginModal.Toggle>
+                  <LoginModal.Window>
+                    <LoginForm />
+                  </LoginModal.Window>
+                </LoginModal>
+              
             </Menu.NavList>
           </Menu>
         </Header.Navs>

@@ -11,7 +11,7 @@ import { FooterList } from "./FooterList";
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
-    <footer className="w-full mt-3 grid grid-cols-3 grid-rows-3 h-[500px] py-3 px-3 border-[1px]">
+    <footer className="w-full mt-3 grid grid-cols-3 grid-rows-3 h-[500px] py-3 px-3 shadow-2xl shadow-stone-500 ">
       <div className=" basis-2/6 row-span-3">
         <div className="flex flex-col gap-2 ">
           <img src="./logo.png" alt="logo" className=" w-30" />

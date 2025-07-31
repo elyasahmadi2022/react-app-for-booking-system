@@ -16,6 +16,10 @@
     .active {
         @apply text-white
     }
+
+    .searchInput {
+        @apply w-full py-3 outline-none border-b-[1.5px] border-gray-300 pl-3 placeholder:text-lg placeholder:font-medium
+    }
 }
 
 @theme {

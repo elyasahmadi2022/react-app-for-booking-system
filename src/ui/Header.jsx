@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Menu from "./Menu";
 const HeaderContext = createContext();
 export default function Header({ children }) {
   const [isScrolled,setIsScrolled] = useState(false);
@@ -26,11 +27,10 @@ function Contacts({ children }) {
 function Navs({ children }) {
   const {isScrolled} = useContext(HeaderContext)
   return  <nav
-      className={`flex items-center justify-around bg-orange-400   sm:gap-1 sm:text-sm transition-all duration-100   sm:py-3 max-sm:pt-3 max-sm:ml-0 z-50 ${isScrolled ? 'fixed top-0 left-0 right-0 ': ''}`}
+      className={`flex items-center justify-around bg-orange-400  sm:gap-1 sm:text-sm transition-all duration-100   sm:py-1 max-sm:pt-3 max-sm:ml-0 z-50 ${isScrolled ? 'fixed top-0 left-0 right-0 ': ''}`}
     >
       {children}
     </nav>;
 }
-
 Header.Contacts = Contacts;
 Header.Navs = Navs;

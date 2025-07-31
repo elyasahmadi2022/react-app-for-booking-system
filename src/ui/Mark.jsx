@@ -1,8 +1,8 @@
 export default function Mark({ icon, text }) {
   return (
-    <div className="flex gap-3  items-center">
+    <div className="flex gap-1  items-center font-poppins">
       <span>{icon}</span>
-      <span>{text}</span>
+      <span className=" text-[10px]">{text}</span>
     </div>
   );
 }
