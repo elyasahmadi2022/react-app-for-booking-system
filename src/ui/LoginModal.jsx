@@ -1,10 +1,10 @@
 import { cloneElement, createContext, useContext, useState } from "react";
-import Button from "./Button";
 import { createPortal } from "react-dom";
 import { FaXmark } from "react-icons/fa6";
 import { useOutSideClick } from "../hooks/useClickOutSide";
 const ModalContext = createContext();
 export default function LoginModal({ children }) {
+ 
   const [openId, setOpenId] = useState("");
   const open = setOpenId;
   const close = () => setOpenId("");
@@ -18,6 +18,7 @@ export default function LoginModal({ children }) {
 }
 function Toggle({ children, id }) {
   const { open, close, openId } = useContext(ModalContext);
+
   const handleClick = () => {
     openId === "" || openId !== id ? open(id) : close();
    

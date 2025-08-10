@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from "react";
 import { useOutSideClick } from "../hooks/useClickOutSide";
-import DatePickerCustom from "./DatePickerCustom";
+import DatePickerCustom from "./CustomDateCalendar";
 import GuestSelector from "./GuestSelector";
-import Button from "./Button"
+import Button from "./Button";
 import GuestOptions from "./GuestOptions";
 import { useSearchHotels } from "./HotelSearchContext";
 const SearchModalContext = createContext();
@@ -40,43 +40,48 @@ function SearchWindow({ children }) {
   return isOpen ? (
     <div
       ref={ref}
-      className="w-full shadow-2xl h-[300px] bg-white absolute top-0"
+      className="w-full shadow-2xl h-[300px] bg-white absolute top-0 z-50"
     >
       {children}
     </div>
   ) : null;
 }
 function SelectDateWindow() {
-
   const { isOpen, setIsOpen } = useContext(SearchModalContext);
   const ref = useOutSideClick(setIsOpen);
-  return isOpen ? (
-    <DatePickerCustom />
-  ) : null;
+  return isOpen ? <DatePickerCustom ref={ref} open={isOpen} /> : null;
 }
 function SelectGuestWindow() {
-
+  const { travelers, dispatch } = useSearchHotels();
   const { isOpen, setIsOpen } = useContext(SearchModalContext);
-  const [increaseRoom, setIncreaseRoom] = useState(false);
 
   const ref = useOutSideClick(setIsOpen);
-  // function handleIncreaseRoom(){
-  //   setIncreaseRoom((increase) => !increase)
-   
-  // }
   return isOpen ? (
     <div
       ref={ref}
-      className=" min-w-2xs shadow-2xl min-h-[400px] scroll-auto bg-white absolute top-0"
+      className="min-w-2xs shadow-2xl   bg-white absolute top-[130%] transition-all duration-200 z-50"
     >
-      <div className=" w-full h-full grid grid-cols-2 grid-rows-2 gap-2">
-        <GuestOptions />
-        {increaseRoom && <GuestOptions />}
-
+      <div className=" overflow-auto scroll-auto h-[400px]  w-full grid grid-cols-2 gap-2">
+        {travelers.map((traveler) => (
+          <>
+            <GuestOptions id={traveler.id} key={traveler.id} />
+            {traveler.id > 1 && (
+              <div className=" absolute bottom-1 w-2/4 right-1">
+                <button
+                  onClick={() =>
+                    dispatch({ type: "create-room", payload: traveler.id })
+                  }
+                  className="rounded-full w-full bg-orange-400 text-white col-start-2 col-end-3 cursor-pointer hover:bg-orange-300 hover:text-white transition-all duration-200"
+                >
+                  add room
+                </button>
+              </div>
+            )}
+          </>
+        ))}
       </div>
     </div>
   ) : null;
-
 }
 
 FormSearchModal.SearchWindow = SearchWindow;

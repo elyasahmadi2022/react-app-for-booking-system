@@ -13,14 +13,14 @@ export default function Home() {
   return (
     <>
       <section className="w-full min-h-screen">
-        <div className="bg-[url(../../../../public/home-landing.jpg)] bg-cover bg-top bg-no-repeat min-h-screen relative object-cover">
+        <div className="bg-[url(/home-landing.jpg)] bg-cover bg-top bg-no-repeat min-h-screen relative object-cover inset-0">
           <div className="absolute inset-0 bg-black/50 object-cover" />
           <div className=" flex flex-col items-center justify-around  absolute top-2/20 max-sm:top-2/14 left-2/4 text-center -translate-x-2/4 w-full">
             <h1 className="   w-full p-4  font-extrabold font-poppins tracking-widest text-shadow-amber-100">
-              <span className="block text-center text-4xl text-white  py-3 sm:text-5xl">
+              <span className="block text-center text-4xl text-white  py-3 sm:text-5xl text-shadow-lg">
                 Discover Your Next
               </span>
-              <span className="text-center text-4xl sm:text-5xl  text-orange-400 py-3">
+              <span className="text-center text-4xl sm:text-5xl  text-orange-400 py-3 text-shadow-sm text-shadow-orange-200/30">
                 Adventur
               </span>
             </h1>

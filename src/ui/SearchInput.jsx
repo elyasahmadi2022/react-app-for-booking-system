@@ -8,7 +8,7 @@ export default function SearchInput({ onChange, value, isSearching }) {
         onChange={(e) => onChange(e)}
         value={value}
         type="search"
-        className="py-4  bg-stone-100 my-5 pl-4 w-full focus:outline-2 focus:outline-orange-400  focus:border-orange-400 shadow-2xs   shadow-stone-400"
+        className="py-3  bg-stone-100 my-5 pl-4 w-full focus:outline focus:outline-orange-300  focus:border-orange-300 shadow-lg placeholder:text-orange-300 placeholder:text-sm placeholder:capitalize placeholder:tracking-wide "
         placeholder="Find Out Your Journey"
       />
     </div>

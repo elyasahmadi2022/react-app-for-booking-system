@@ -11,10 +11,10 @@ export function useOutSideClick(handler, listenerCapturing = true) {
         if (ref.current && !ref.current.contains(e.target)) handler();
       }
       searchParams.delete("country")
-      document.addEventListener("click", handleClick, true);
-      return () => document.removeEventListener("click", handleClick, true);
+      document.addEventListener("click", handleClick, listenerCapturing);
+      return () => document.removeEventListener("click", handleClick, listenerCapturing);
     },
-    [handler, listenerCapturing]
+    [handler, listenerCapturing,searchParams]
   );
 
   return ref;

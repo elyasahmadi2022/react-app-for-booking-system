@@ -2,23 +2,27 @@
 
 @layer components {
     .navItem {
-        @apply text-sm relative sm:text-xl font-poppins
+        @apply text-sm relative sm:text-xl font-poppins px-3 py-1.5 box-border h-[120%]
     }
 
-    .navItem-hover {
-        @apply after:absolute after:w-0 after:-top-6.5 after:left-2/4 after:h-1 after:rounded-xl after:bg-white transition-all duration-[.3s] hover:after:w-full hover:after:-left-0
-    }
+  
 
     .icons {
         @apply cursor-pointer
     }
 
+    li a.active {
+        @apply text-white bg-orange-300
+    }
     .active {
         @apply text-white
     }
 
     .searchInput {
         @apply w-full py-3 outline-none border-b-[1.5px] border-gray-300 pl-3 placeholder:text-lg placeholder:font-medium
+    }
+    .input{
+        @apply text-stone-800 h-10 border-2  w-full  pl-9 rounded-sm font-semibold placeholder:font-medium relative  focus:outline-orange-400 focus:border-none
     }
 }
 

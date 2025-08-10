@@ -50,7 +50,7 @@ export default function LoginForm() {
           </button>
         </div>
       </Box>
-      <Link to="/signup" className="text-center hover:underline text-lg">create a new account</Link>
+      <Link to="/account/signup" className="text-center hover:underline text-lg">create a new account</Link>
     </form>
   );
 }

@@ -6,4 +6,3 @@ export async function getDestinations() {
   if (error) throw new Error("Error While getting the Destination");
   return data;
 }
-

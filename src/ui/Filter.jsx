@@ -9,7 +9,7 @@ export default function Filter({ filterField, options }) {
     setSearchParams(searchParams);
   }
   return (
-    <div className="mx-4 shadow-2xl rounded-full p-1.5 gap-2 flex ">
+    <div className="mx-4  flex ">
       {options.map((option) => (
         <FilterButton
           key={option.value}

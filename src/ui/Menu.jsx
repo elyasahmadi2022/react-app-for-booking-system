@@ -2,15 +2,16 @@ import { createContext, useContext, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { TiThMenu } from "react-icons/ti";
 import Logo from "./Logo";
+import { useOutSideClick } from "../hooks/useClickOutSide";
 const MenuContext = createContext();
 
 export default function Menu({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen((open) => !open);
   return (
-    <MenuContext.Provider value={{ toggle, isOpen }}>
-      <div className="hidden  max-sm:flex flex-col  items-center z-50  relative w-full min-h-12">
-        <Logo className={'absolute left-1 -top-1.5'} />
+    <MenuContext.Provider value={{ toggle, isOpen, setIsOpen }}>
+      <div className="hidden   max-sm:flex flex-col  items-center  relative w-full min-h-12">
+
         {children}
       </div>
     </MenuContext.Provider>
@@ -20,17 +21,19 @@ export default function Menu({ children }) {
 function Button() {
   const { isOpen, toggle } = useContext(MenuContext);
   return (
-    <button onClick={toggle} className="cursor-pointer absolute right-3 top-0.5">
-      {isOpen ? <HiXMark size={30} /> : <TiThMenu size={30} />}
+    <button onClick={toggle} className="cursor-pointer absolute left-3 top-2/4 -translate-y-2/4">
+      {isOpen ? <HiXMark size={30} color="white" /> : <TiThMenu size={30} color="white" />}
     </button>
   );
 }
 function NavList({ children }) {
-  const { isOpen } = useContext(MenuContext);
+  const { isOpen, setIsOpen } = useContext(MenuContext);
+  const close = () => setIsOpen(false)
+  const ref = useOutSideClick(close)
   return (
     <>
       {isOpen && (
-        <ul className="flex min-w-full flex-col  items-center justify-start mt-10 [&>li]:w-full [&>li]:py-2 [&>li]:text-center [&>li]:font-poppins [&>li]:font-semibold [&>li]:capitalize [&>li]:hover:bg-orange-500/80  [&>li]:cursor-pointer border-t-2 border-stone-800">
+        <ul ref={ref} className="flex min-w-2/5 flex-col absolute left-0 top-2  shadow-lg  items-center  justify-start mt-10 [&>li]:w-full [&>li]:py-2 [&>li]:text-center [&>li]:font-poppins [&>li]:font-semibold [&>li]:capitalize [&>li]:hover:bg-orange-300  [&>li]:cursor-pointer transition-all duration-300 bg-stone-100/50">
           {children}
         </ul>
       )}

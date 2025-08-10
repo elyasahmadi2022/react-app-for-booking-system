@@ -7,7 +7,12 @@ export async function getHotels() {
   if (error) throw new Error(error.message);
   return data;
 }
-
+export async function getAllHotels(){
+  let {data, error} = await supabase.from("hotels")
+  .select('*, states(*), hotel_rooms(*)')
+  if (error) throw new Error(error.message)
+  return data
+}
 export async function searchHotels({fieldset,value}){
   let { data, error } = await supabase
   .from('hotels')
