@@ -3,14 +3,14 @@ import FormRow from "./FormRow";
 import { Heading } from "./Heading";
 import Input from "./Input";
 import PasswordInput from "./PasswordInput";
-
-const  PersonalForm = ({step:{step}, form})=> {
+import {motion} from "framer-motion"
+const  PersonalForm = ({step:{step}, form, variants})=> {
 
   const { register, formState, watch} = form
   const { errors } = formState;
 
   return (
-    <div className="w-full md:w-[90%] h-auto bg-white">
+    <motion.div variants={variants} initial="hidden" animate="visible" exit='exit' className="w-full md:w-[90%] h-auto bg-white">
       <Heading as={"h3"} className="text-center p-2">
         {step}
       </Heading>
@@ -18,6 +18,7 @@ const  PersonalForm = ({step:{step}, form})=> {
           className="flex flex-col gap-3 w-full md:w-[90%] m-auto py-2"
           
       >
+        <Input type='text' hidden={true} register={register('userType')}/>
         <FormRow label="First Name" error={errors?.firstName?.message}>
           <Input
             type="text"
@@ -97,7 +98,7 @@ const  PersonalForm = ({step:{step}, form})=> {
         </FormRow>
         <FileInput acccept={'image/*'} className={'"w-full md:w-[90%] m-auto   bg-orange-200/30  border-2  relative   border-dashed border-orange-300 h-40 flex flex-col justify-center items-center gap-3'} register={register("avatar")} message="Drag and drop your avatar photo as png/jpg" />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

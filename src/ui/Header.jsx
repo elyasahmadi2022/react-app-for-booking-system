@@ -14,10 +14,10 @@ function ToolBar({ children, className }) {
     </div>
   );
 }
-function Navs({ children }) {
+function Navs({ children, className }) {
   return (
     <nav
-      className={`flex items-center  min-h-10 justify-around  box-border  bg-orange-400  sm:gap-1 sm:text-sm transition-all duration-100 overflow-hidden   sm:py-1 max-sm:pt-3 max-sm:ml-0 
+      className={`${className} min-h-10 sm:gap-1 sm:text-sm transition-all duration-100 overflow-hidden   sm:py-1 max-sm:pt-3 max-sm:ml-0 
        absolute top-2/4 left-2/4 -translate-2/4 [&>a]:text-sm sm:font-semibold  min-w-2/4 max-sm:hidden  rounded-lg`}
     >
       {children}

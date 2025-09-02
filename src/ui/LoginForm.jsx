@@ -1,16 +1,15 @@
-import { RiLockPasswordLine } from "react-icons/ri"; 
-import { HiOutlineMail } from "react-icons/hi"; 
+import { useState } from "react";
+import { CgSpinner } from "react-icons/cg";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Box from "./Box";
-import Button from "./Button";
+import FormRow from "./FormRow";
 import Input from "./Input";
 import Label from "./Label";
 import Row from "./Row";
-import { CgSpinner } from "react-icons/cg";
-import { useState } from "react";
-import FormRow  from "./FormRow";
 
-export default function LoginForm() {
+export default function LoginForm(){
   const [isLoading, setIsLoading] = useState(false);
   function handleSubmit(){
     setIsLoading(true)
@@ -24,17 +23,17 @@ export default function LoginForm() {
         </h2>
       </Box>
       <FormRow label="email">
-        <Input id="email" type="email" placeholder="Enter Email" icon={<HiOutlineMail size={20} />} />
+        <Input id="email" type="email" placeholder="Enter Email" icon={<HiOutlineMail size={25} />} />
       </FormRow>
       <FormRow label="password">
-        <Input id="password" type="password" placeholder="Enter Password" icon={<RiLockPasswordLine size={20} />} />
+        <Input id="password" type="password" placeholder="Enter Password" icon={<RiLockPasswordLine size={25} />} />
       </FormRow>
-      <Row>
+      <Row className=' justify-between px-4'>
         <div className="flex items-center gap-2 ">
           <Input type="checkbox" id="remember-me"></Input>
           <Label htmlFor="remember-me">Remember Me</Label>
         </div>
-        <Link to="#" className=" hover:underline">
+        <Link to="#" className="  hover:underline">
           Forget Password?
         </Link>
       </Row>

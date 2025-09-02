@@ -1,3 +1,3 @@
-export default function Row({children}) {
-  return (<div className="flex justify-between px-4">{children}</div>);
+export default function Row({children ,className}) {
+  return (<div className={`flex  ${className}`}>{children}</div>);
 }

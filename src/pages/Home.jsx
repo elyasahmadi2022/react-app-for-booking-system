@@ -8,22 +8,44 @@ import CardRow from "../features/hotels/CardRow";
 import Modal from "./../ui/Modal";
 import Search from "../features/hotels/Search";
 import { useHotels } from "../features/hotels/useHotels";
+import { AnimatePresence, motion } from "framer-motion";
+import StaggerText from "../ui/StaggerText";
 export default function Home() {
-  const {data} = useHotels()
+  const { data } = useHotels();
   return (
     <>
       <section className="w-full min-h-screen">
         <div className="bg-[url(/home-landing.jpg)] bg-cover bg-top bg-no-repeat min-h-screen relative object-cover inset-0">
           <div className="absolute inset-0 bg-black/50 object-cover" />
           <div className=" flex flex-col items-center justify-around  absolute top-2/20 max-sm:top-2/14 left-2/4 text-center -translate-x-2/4 w-full">
-            <h1 className="   w-full p-4  font-extrabold font-poppins tracking-widest text-shadow-amber-100">
-              <span className="block text-center text-4xl text-white  py-3 sm:text-5xl text-shadow-lg">
+            {/* <h1 className="   w-full p-4  font-extrabold font-poppins tracking-widest ">
+              <motion.span
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.2,
+                  damping: 20,
+                }}
+                className="block text-center text-4xl text-white  py-3 sm:text-5xl text-shadow-lg"
+              >
                 Discover Your Next
-              </span>
-              <span className="text-center text-4xl sm:text-5xl  text-orange-400 py-3 text-shadow-sm text-shadow-orange-200/30">
+              </motion.span>
+              <motion.span
+                initial={{ z: -100 }}
+                animate={{ z: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="text-center text-4xl sm:text-5xl  text-orange-400 py-3 text-shadow-sm "
+              >
                 Adventur
-              </span>
-            </h1>
+              </motion.span>
+            </h1> */}
+            <StaggerText>
+              Discover Your Next
+            </StaggerText>
+            <StaggerText>
+             Adventur
+            </StaggerText>
             <p className="text-white text-lg tracking-wide mx-2 md:max-w-2/4 text-shadow-2xs ">
               Embark on unforgettable journeys through breathtaking landscapes.
               From mountain peaks to hidden valleys, create memories that last a
@@ -43,9 +65,11 @@ export default function Home() {
                     </span>
                   </Button>
                 </Modal.Toggle>
-                <Modal.Window>
-                  <Search />
-                </Modal.Window>
+                <AnimatePresence>
+                  <Modal.Window>
+                    <Search />
+                  </Modal.Window>
+                </AnimatePresence>
               </Modal>
               <Button type="secondary">Watch Stories</Button>
             </GroupButton>
@@ -69,18 +93,20 @@ export default function Home() {
           </div>
         </div>
       </section>
-    { data &&  <section className=" w-full min-h-screen  my-20">
-        <div className=" py-7">
-          <h1 className="font-bold text-3xl text-center py-3">
-            Popular Places
-          </h1>
-          <p className="text-center md:text-2xl text-sm px-4">
-            Choose from our carefully curated selection of adventures designed
-            to challenge and inspire you.
-          </p>
-        </div>
-        <CardRow />
-      </section>}
+      {data && (
+        <section className=" w-full min-h-screen  my-20">
+          <div className=" py-7">
+            <h1 className="font-bold text-3xl text-center py-3">
+              Popular Places
+            </h1>
+            <p className="text-center md:text-2xl text-sm px-4">
+              Choose from our carefully curated selection of adventures designed
+              to challenge and inspire you.
+            </p>
+          </div>
+          <CardRow />
+        </section>
+      )}
     </>
   );
 }

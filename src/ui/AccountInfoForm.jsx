@@ -3,13 +3,14 @@ import CustomDatePicker from './CustomDatePicker';
 import FormRow from './FormRow';
 import { Heading } from './Heading';
 import Input from './Input';
+import { motion } from "framer-motion";
 
-function AccountInfoForm({step:{step}, form} ) {
+function AccountInfoForm({step:{step}, form, variants} ) {
     const {formState, register, control} = form
     const {errors} = formState
 
   return (
-      <div className="w-full md:w-[90%] h-full bg-white m-auto ">
+      <motion.div  variants={variants} initial="hidden" animate="visible" exit='exit' className="w-full md:w-[90%] h-full bg-white m-auto ">
         <Heading as={"h3"} className={"p-3 text-center"}>
           {step}
         </Heading>
@@ -60,7 +61,7 @@ function AccountInfoForm({step:{step}, form} ) {
          
           </div>
         </div>
-      </div>
+      </motion.div>
     );
 }
 

@@ -11,10 +11,14 @@
         @apply cursor-pointer
     }
 
-    li a.active {
+    .sidebar li a.active {
         @apply text-white bg-orange-300
     }
+   
     .active {
+        @apply text-white
+    }
+    .menubar li a.active{
         @apply text-white
     }
 

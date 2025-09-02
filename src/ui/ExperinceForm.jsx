@@ -1,12 +1,12 @@
 import FileInput from "./FileInput";
 import FormRow from "./FormRow";
 import { Heading } from "./Heading";
-
-function ExperinceForm({ step: { step }, form }) {
+import {motion} from "framer-motion"
+function ExperinceForm({ step: { step }, form, variants }) {
   const { formState, register, setValue } = form;
 
   return (
-    <div className="w-full md:w-[90%] h-full bg-white m-auto ">
+    <motion.div variants={variants} initial="hidden" animate="visible" exit="exit" className="w-full md:w-[90%] h-full bg-white m-auto ">
       <Heading as={"h3"} className={"p-3 text-center"}>
         {step}
       </Heading>
@@ -27,7 +27,7 @@ function ExperinceForm({ step: { step }, form }) {
         </div>
        
       </div>
-    </div>
+    </motion.div>
   );
 }
 

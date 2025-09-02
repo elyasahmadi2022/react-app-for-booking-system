@@ -36,7 +36,6 @@ async function getStates(iso2){
       const data = await res.json()
       return data
     }catch(err){
-      console.log(err)
       throw new Error(err)
     }
     
@@ -47,11 +46,20 @@ async function getStates(iso2){
     const data = await res.json()
     return data;
   }catch(error){
-    console.log(error)
     throw new Error(error)
   }
 }
-
+export const countryDetails = async (iso2) =>{
+  try{
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/${iso2}`,
+      requestOption)
+    const data = await res.json()
+    console.log(data)
+    return data
+  }catch(error){
+    throw new Error(error)
+  }
+}
 export function useStateCities(){
   const [searchparams] = useSearchParams()
   const countryISO2 = searchparams.get("iso2") || 'AFG'
@@ -60,17 +68,28 @@ export function useStateCities(){
     queryKey: ['cities', countryISO2, stateISO2],
     queryFn: () => getCities(countryISO2,stateISO2)
   })
-  console.log(cities)
   return {cities, isLoading}
 }
 export function useStateByCountry(){
   const [searchParams] = useSearchParams()
-  const iso2 = searchParams.get('iso2') || 'AFG'
+  const iso2 = searchParams.get('iso2') || 'AF'
   const {data} = useQuery({
     queryKey:['states', iso2],
     queryFn:() => getStates(iso2),
    
   })
-
+  
   return {data}
+}
+
+export const statesDetails = async(country, state) => {
+  try{
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/${country}/states/${state}`, requestOption)
+    const data = await res.json()
+    console.log(data)
+    return data
+  }catch(error){
+    throw new Error(error)
+  }
+
 }

@@ -14,3 +14,10 @@ export  function findElement(id, travelers){
 export function formatDates(date){
     return format(date, 'EEE, MMM dd ,yyyy')
 }
+
+export function maskEmail(email){
+    const [localPar, domain] = email.split('@')
+    const visisablePart = localPar.slice(0,2)
+    const maskPart = visisablePart +'*'.repeat((localPar.length - 2))
+    return `${maskPart}@${domain}`
+}

@@ -1,16 +1,16 @@
 import { createContext, useContext, useState } from "react";
 const MenuBarContext = createContext();
 export default function MenuBarProvider({ children }) {
-  const [isOpen, setIsOpen] = useState('');
-  const close = () => setIsOpen('');
-  const open =(value) => setIsOpen(value)
+  const [isOpen, setIsOpen] = useState("");
+  const close = () => setIsOpen("");
+  const open = (value) => setIsOpen(value);
   return (
     <MenuBarContext.Provider
       value={{
         isOpen,
         setIsOpen,
         close,
-        open
+        open,
       }}
     >
       {children}

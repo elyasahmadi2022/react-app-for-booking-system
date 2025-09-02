@@ -16,9 +16,9 @@ export default function ImageCover({ className, hotel }) {
   }
   return (
     <div
-      className={`${className} w-full h-full relative rounded-lg`}
+      className={`${className} w-full h-full relative rounded-lg overflow-hidden`}
     >
-      <div className="w-full h-full rounded-sm">
+      <div className="w-full h-full rounded-sm overflow-hidden">
         {/* {images.map((image, index) => (
           <div key={index} className={`w-full  h-full  transition-all duration-200`}>
             <img src={image} className="w-full" alt={`The image of hotel in `} />

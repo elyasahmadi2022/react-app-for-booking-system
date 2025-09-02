@@ -9,8 +9,8 @@ import { Heading } from "./Heading";
 import Input from "./Input";
 import Option from "./Option";
 import { Select } from "./Select";
-
-function ContactForm({ step:{step}, form }) {
+import {motion} from "framer-motion"
+function ContactForm({ step:{step}, form ,variants}) {
   const { data: countries } = useCountries();
   const { data } = useStateByCountry();
   const { cities } = useStateCities();
@@ -19,7 +19,7 @@ function ContactForm({ step:{step}, form }) {
   const { errors } = formState;
 
   return (
-    <div className="w-full md:w-[90%] h-full bg-white m-auto ">
+    <motion.div variants={variants} initial="hidden" animate="visible" exit='exit' className="w-full md:w-[90%] h-auto bg-white m-auto ">
       <Heading as={"h3"} className={"p-3 text-center"}>
         {step}
       </Heading>
@@ -129,7 +129,7 @@ function ContactForm({ step:{step}, form }) {
           </FormRow>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

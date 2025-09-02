@@ -1,5 +1,7 @@
+import { CgSearch } from "react-icons/cg";
 import { AiFillGift } from "react-icons/ai";
-import { BsBell, BsGear, BsPersonBoundingBox, BsPieChartFill } from "react-icons/bs";
+import { BiBell } from "react-icons/bi";
+import { BsGear, BsPersonBoundingBox, BsPieChartFill } from "react-icons/bs";
 import { CiLight } from "react-icons/ci";
 import { FaHotel, FaRegUser } from "react-icons/fa";
 import { GiClosedDoors } from "react-icons/gi";
@@ -23,14 +25,14 @@ export default function AdminLayout() {
     { path: "/admin/activities", label: "activities" },
     { path: "/admin/manage", label: "manage" },
     { path: "/admin/payments", label: "payment" },
-    { path: "/admin/bookings", label: "bookings" },
+    { path: "/admin/shopping", label: "shopping" },
     { path: "/admin/bookings", label: "bookings" },
     { path: "/admin/hotels", label: "Hotels" },
     { path: "/admin/rooms", label: "rooms" },
   ];
   return (
     <div className="peer bg-blue-300/30 w-full min-h-screen grid   grid-cols-[0.12fr_.19fr_1fr_auto] sm:grid-cols-[0.06fr_.15fr_1fr_auto] md:grid-cols-[0.04fr_.12fr_1fr_auto] lg:grid-cols-[0.03fr_.10fr_1fr_auto]  grid-rows-[.1fr_auto] ">
-      <Header className="col-start-2 -col-end-3 row-start-1 row-end-2 fixed  shadow-sm">
+      <Header className="col-start-2 -col-end-3 row-start-1 row-end-2 fixed  shadow-sm z-50">
         <Header.ToolBar className={"flex gap-2"}>
           <FaRegUser
             size={30}
@@ -55,45 +57,94 @@ export default function AdminLayout() {
             )}
           </div>
 
-          <span className="relative group">
-            <BsBell
+          <span className="relative group p-0.5">
+            <BiBell
               size={30}
               color="white"
               className="p-1 outline rounded-full cursor-pointer  group-hover:bg-orange-300 transition-all duration-300"
             />
-            <span className=" w-3 h-3 rounded-full bg-green-400 absolute -top-1.5 right-0.5 animate-ping"></span>
+            <span className=" w-4 h-4 rounded-full bg-red-600 absolute -top-1.5 right-0.5 p-0.5 text-[12px] text-white flex items-center justify-center font-poppins font-medium">
+              6
+            </span>
           </span>
         </Header.ToolBar>
+        <Header.Navs className='px-2'>
+          <div className="w-2/5 flex gap justify-center items-center relative">
+            <input
+              placeholder="Find out what you are looking for"
+              type="search"
+              className=" placeholder:text-[12px] font-light font-poppins w-[100%] py-1.5  pl-2 border-2 border-slate-700 outline-none rounded-xs"
+            />
+            <span className="flex border-white absolute right-0.5 py-1 px-1  items-center bg-orange-300 border-l-none justify-center ">
+              <CgSearch
+                size={25}
+                color="white"
+                className="stroke-neutral-600"
+              />
+            </span>
+          </div>
+        </Header.Navs>
         <Header.Logo>
           <Logo />
         </Header.Logo>
       </Header>
       <AdminSideBar className="peer hover:col-end-3  col-start-1 col-end-2 row-start-2 row-end-4 bg-blue-200/30 flex flex-col gap-2  cursor-pointer transition-all duration-1000 shadow-lg shadow-stone-700/30">
         <div className="mt-3  relative  w-full h-full group">
-          <div className=" absolute left-0 h-full flex flex-col  w-full group  ">
-            <SideBarItem navitem={navItems[0]}  icon={<MdOutlineAccountBalance    size={30}  className="p-1 fill-slate-700 " />}/>
-            <SideBarItem navitem={navItems[1]}  icon={<BsPersonBoundingBox   size={30}  className="p-1 fill-slate-700" />}/>
-            <SideBarItem navitem={navItems[2]}  icon={<AiFillGift     size={30}  className="p-1 fill-slate-700" />}/>
-            <SideBarItem navitem={navItems[3]}  icon={<BsPieChartFill      size={30} className="p-1 fill-slate-700" />}/>
-            <SideBarItem navitem={navItems[4]}  icon={<RiWallet3Fill     size={30} className="p-1 fill-slate-700 " />}/>
-            <SideBarItem navitem={navItems[5]}  icon={<SiShopee     size={30} className="p-1 fill-slate-700" />}/>
-            <SideBarItem navitem={navItems[6]}  icon={<FaHotel    size={30}  className="p-1 fill-slate-700" />}/>
-            <SideBarItem navitem={navItems[7]}  icon={<GiClosedDoors     size={30} className="p-1 fill-slate-700" />}/>
-            
+          <div className="absolute left-0 h-full flex flex-col  w-full group sidebar ">
+            <SideBarItem
+              navitem={navItems[0]}
+              icon={
+                <MdOutlineAccountBalance
+                  size={30}
+                  className="p-1 fill-slate-700 "
+                />
+              }
+            />
+            <SideBarItem
+              navitem={navItems[1]}
+              icon={
+                <BsPersonBoundingBox size={30} className="p-1 fill-slate-700" />
+              }
+            />
+            <SideBarItem
+              navitem={navItems[2]}
+              icon={<AiFillGift size={30} className="p-1 fill-slate-700" />}
+            />
+            <SideBarItem
+              navitem={navItems[3]}
+              icon={<BsPieChartFill size={30} className="p-1 fill-slate-700" />}
+            />
+            <SideBarItem
+              navitem={navItems[4]}
+              icon={<RiWallet3Fill size={30} className="p-1 fill-slate-700 " />}
+            />
+            <SideBarItem
+              navitem={navItems[5]}
+              icon={<SiShopee size={30} className="p-1 fill-slate-700" />}
+            />
+            <SideBarItem
+              navitem={navItems[6]}
+              icon={<FaHotel size={30} className="p-1 fill-slate-700" />}
+            />
+            <SideBarItem
+              navitem={navItems[7]}
+              icon={<GiClosedDoors size={30} className="p-1 fill-slate-700" />}
+            />
           </div>
           <div className=" absolute  bottom-0 group flex items-center w-full group-hover:bg-orange-300  transition-all duration-300">
-             <BsGear
-            size={30}
-            color="black"
-            className="group-hover:bg-orange-300  group-hover:fill-white p-1 "
-          />
-          <span className="hidden group-hover:block text-[14px] group-hover:text-white">logout</span>
+            <BsGear
+              size={30}
+              color="black"
+              className="group-hover:bg-orange-300  group-hover:fill-white p-1 "
+            />
+            <span className="hidden group-hover:block text-[14px] group-hover:text-white">
+              logout
+            </span>
           </div>
         </div>
       </AdminSideBar>
-      <main className="peer-hover:col-start-3 transition-all duration-1000  col-start-2 col-end-4 row-start-2 row-end-4 h-[98%]  w-[95%] m-auto  p-1 shadow-lg shadow-stone-800/30">
+      <main className="peer-hover:col-start-3 transition-all duration-1000  col-start-2 col-end-4 row-start-2 row-end-4 h-[98%]  w-[95%]  m-auto  shadow-lg shadow-stone-800/30 mt-2 overflow-auto px-3 py-3">
         <Outlet />
-        
       </main>
     </div>
   );

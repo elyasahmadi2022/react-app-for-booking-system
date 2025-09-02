@@ -1,16 +1,17 @@
-import { AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { CgBell } from "react-icons/cg";
 import { CiLight } from "react-icons/ci";
 import { TiWeatherNight } from "react-icons/ti";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import { useGlobalContext } from "./GlobalContext";
 import Header from "./Header";
 import LoginForm from "./LoginForm";
 import LoginModal from "./LoginModal";
 import Logo from "./Logo";
 import Menu from "./Menu";
 import { NavListItem } from "./NavListItem";
-import { useGlobalContext } from "./GlobalContext";
+import StaggerNavList from "./StaggerNavList";
 export default function AppLayout() {
   const { isLightMode, setIsLightMode } = useGlobalContext();
   const navList = [
@@ -22,12 +23,12 @@ export default function AppLayout() {
   ];
   return (
     <div>
-      <Header className={'fixed top-0 z-20'}>
+      <Header className={"fixed top-0 z-20"}>
         <Header.Logo>
           <Logo className="max-sm:hidden" />
         </Header.Logo>
-        <Header.Navs>
-          {navList.map((item) => (
+        <Header.Navs className="bg-orange-400 flex items-center justify-around  box-border">
+          {/* {navList.map((item) => (
             <NavListItem
               key={item.label}
               navitem={item}
@@ -35,6 +36,11 @@ export default function AppLayout() {
                 "hover:text-stone-100 transition-all duration-200 h-full navItem"
               }
             />
+          ))} */}
+          {navList.map((item, index) => (
+            <NavLink key={index} to={item.path}>
+            <StaggerNavList item={item} />
+            </NavLink>
           ))}
         </Header.Navs>
         <Menu>
@@ -44,7 +50,9 @@ export default function AppLayout() {
               <li key={item.label}>
                 <NavListItem
                   navitem={item}
-                  className={"w-full  block  text-left pl-2"}
+                  className={
+                    "w-full  block  text-left pl-2 [a]:active:bg-orange-600"
+                  }
                 />
               </li>
             ))}
@@ -78,18 +86,20 @@ export default function AppLayout() {
               </span>
             </span>
             <div className="w-auto xl:w-12">
-              <LoginModal>
-                <LoginModal.Toggle id="login">
-                  <AiOutlineUser
-                    size={30}
-                    className=" p-1 outline rounded-full cursor-pointer  hover:bg-orange-300 transition-all duration-300"
-                    color="white"
-                  />
-                </LoginModal.Toggle>
-                <LoginModal.Window name="login">
-                  <LoginForm />
-                </LoginModal.Window>
-              </LoginModal>
+             
+                <LoginModal>
+                  <LoginModal.Toggle id="login">
+                    <AiOutlineUser
+                      size={30}
+                      className=" p-1 outline rounded-full cursor-pointer  hover:bg-orange-300 transition-all duration-300"
+                      color="white"
+                    />
+                  </LoginModal.Toggle>
+                  <LoginModal.Window name="login">
+                    <LoginForm />
+                  </LoginModal.Window>
+                </LoginModal>
+             
             </div>
           </div>
         </Header.ToolBar>

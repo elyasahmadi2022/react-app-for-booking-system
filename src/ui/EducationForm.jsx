@@ -5,8 +5,9 @@ import FormRow from "./FormRow";
 import { Heading } from "./Heading";
 import Option from "./Option";
 import { Select } from "./Select";
+import { motion } from "framer-motion";
 
-function EducationForm({ step:{step}, form }) {
+function EducationForm({ step:{step}, form, variants }) {
     const {register, formState, control, watch} = form
     const {errors : {startDate, endDate, subjectField,universtiy,degree }} = formState
   const options = [
@@ -54,7 +55,7 @@ function EducationForm({ step:{step}, form }) {
   ]
 
   return (
-    <div className="w-full md:w-[90%] h-auto bg-white m-auto ">
+    <motion.div variants={variants} initial="hidden" animate="visible" exit='exit'   className="w-full md:w-[90%] h-auto bg-white m-auto ">
       <Heading as={"h3"} className={"p-3 text-center"}>
         {step}
       </Heading>
@@ -173,7 +174,7 @@ function EducationForm({ step:{step}, form }) {
         </div>
         
       </div>
-    </div>
+    </motion.div>
   );
 }
 

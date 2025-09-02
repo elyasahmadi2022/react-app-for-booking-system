@@ -9,21 +9,9 @@ import MenuBarModal from "./MenuBarModal";
 export default function HotelCardChild({ className, hotel }) {
     const {hotel_name:hotelName,hotel_type:hotelType ,address,star_rating:starRating ,description,states, hotel_rooms:hotelRooms} = hotel
     // const {province, city} = states
-
+    const random = Math.round(Math.random() * 100);
+  const parent = hotelName.split(/[ -]/).join("").concat("", random);
     let services = hotelRooms.map(room => room.hotel_services).join().split(',')
-    // console.log(services)
-    // services = services.reduce(function(prev, curr){
-    //     if (prev  !== curr){
-    //       return curr;
-    //     }
-    // },services)
-    // let services = hotelRooms.flatMap((ele) => {
-    //   ele.split(',')
-    // })
-    
-    // services = services.filter(function(service, index, array){
-    //   service !== array[index]
-    // })
     console.log(services)
     const discount = hotelRooms.reduce((pre,curr) =>  {
      return pre + curr.discount
@@ -72,10 +60,10 @@ export default function HotelCardChild({ className, hotel }) {
           <AiOutlineCheck  className="inline" size={18}/> Total with taxes and fees
         </p>
       </div>
-      <MenuBarModal className='col-start-2 col-end-3 row-start-1 row-end-2  relative'>
+      <MenuBarModal className={` col-start-2 col-end-3 row-start-1 row-end-2  relative ${parent}`}>
 
         <MenuBarModal.Toggle id='menu'><HiDotsVertical size={25}  className=" absolute top-2 right-2  "/></MenuBarModal.Toggle>
-        <MenuBarModal.MenusItem id='menu' className={' absolute top-10 right-3'}>
+        <MenuBarModal.MenusItem id='menu' parent={`.${parent}`} className={' absolute top-10 right-3'}>
           <button className="flex gap-1 py-2 px-3 w-full  cursor-pointer hover:bg-orange-300 hover:text-white transition-all duration-200"><FiShare2 size={25}/><span>share</span></button>
           <button className="flex gap-1 py-2 px-3 w-full  cursor-pointer hover:bg-orange-300 hover:text-white transition-all duration-200"><TbMap2  size={25}/> <span>map</span></button>
         </MenuBarModal.MenusItem>

@@ -21,8 +21,8 @@ export default function Hotel() {
     setSearchParams(searchParams);
   };
   return (
-    <section className="w-full min-h-screen grid grid-cols-[.7fr_1fr_1fr_1fr] gap-1 grid-rows-[.3fr_.4fr_1fr_1fr_1fr]">
-      <div className=" col-span-1 row-span-3 row-start-2 row-end-6  border-[1px]">side Bar</div>
+    <section className="w-full min-h-screen grid grid-cols-[1fr_1fr_1fr]  lg:grid-cols-[.7fr_1fr_1fr_1fr] gap-1 grid-rows-[.3fr_.4fr_1fr_1fr_1fr]">
+      <div className="hidden lg:block  lg:col-span-1 lg:row-span-3 lg:row-start-2 lg:row-end-6  border-[1px]">side Bar</div>
       <div className=" col-span-3 row-start-2 row-end-3  row-span-1 ">
         <SearchProvider>
           <SearchForm />
