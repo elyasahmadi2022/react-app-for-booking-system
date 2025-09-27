@@ -18,20 +18,20 @@ export default function Input({
       />
     );
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex relative  items-center gap-2">
       <input
         {...register}
         hidden={hidden}
         type={type}
         id={id}
-        className="text-stone-800 h-13 border-2 disabled:bg-gray-100 disabled:text-gray-300 disabled:border-gray-300  w-full  pl-14 rounded-sm font-semibold placeholder:font-medium relative  focus:outline-orange-400 focus:border-none invalid:outline-red-400"
+        className={`w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md  py-[14px] transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow ${icon ? ' placeholder:pl-1   pl-12': 'px-3' }`}
         required
         placeholder={placeholder}
         value={value}
         disabled={disabled}
       />
       {icon && (
-        <span className=" absolute left-12 px-2 text-stone-500">{icon}</span>
+        <span className=" absolute left-2 px-2 text-stone-500">{icon}</span>
       )}
     </div>
   );

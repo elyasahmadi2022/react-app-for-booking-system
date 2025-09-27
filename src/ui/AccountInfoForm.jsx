@@ -54,7 +54,8 @@ function AccountInfoForm({step:{step}, form, variants} ) {
               <CustomDatePicker  rules={{
                 required: 'The Expired Date should be provided', 
                 validate: (value)=> {
-                    return differenceInYears(new Date(), value) > 1 || 'The Exired Date at least should be greater than one year'
+                    console.log( differenceInYears(new Date(value),new Date()))
+                    return differenceInYears(new Date(value), new Date()) >= 1 || 'The Exired Date at least should be greater than one year'
                 }
               }}  control={control} name={"expireDate"}/>
             </FormRow>

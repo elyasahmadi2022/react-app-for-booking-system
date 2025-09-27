@@ -1,100 +1,84 @@
-import { createContext, useContext } from "react";
-import Mark from "../../ui/Mark";
+import { motion } from "framer-motion";
+import { AiFillStar } from "react-icons/ai";
+import { FaPercentage } from "react-icons/fa";
 import { formatCurrency } from "../../utils/helper";
-import { IoTimerOutline } from "react-icons/io5";
-import { GoLocation } from "react-icons/go";
-import { FaRegStar } from "react-icons/fa";
-import { HiOutlineUser, HiOutlineUsers } from "react-icons/hi2";
-import { useNavigate, useSearchParams } from "react-router-dom";
-const CardContext = createContext();
 export default function Card({ item }) {
   const { id, discount, images, room_type, total_price, is_available, hotels } =
     item;
   const { address, description, hotel_name, star_rating } = hotels;
   const todayDiscount = total_price - discount;
+  const savedDiscount = Math.floor(total_price / discount);
+  console.log(savedDiscount);
   return (
-    <CardContext.Provider value={{ id: id, hotel_name: hotel_name }}>
-      <article className="rounded-sm cursor-pointer h-[400px]  hover:scale-y-105 hover:scale-x-105 transition-all duration-300 shadow-2xl shadow-stone-400/60 grid grid-cols-2 grid-rows-[1.5fr_auto] box-border">
-        <CardImage>
-          <img
-            src={images}
-            alt={`the image of hotel called ${hotel_name}`}
-            className=" aspect-video"
-          />
-        </CardImage>
-        <CardRow>
-          <PriceAndName>
-            <span className="font-bold text-lg font-poppins">{hotel_name}</span>
-            <span className=" text-orange-400 font-semibold text-lg">
-              {formatCurrency(todayDiscount)}
-              <span className=" text-[10px] line-through px-1 text-stone-800">
-                {formatCurrency(total_price)}
-              </span>
-              <span className="text-stone-800">/night</span>
-            </span>
-          </PriceAndName>
-          <Description>{description}</Description>
-          <Marks>
-            <Mark icon={<IoTimerOutline size={16} />} text={is_available ? 'available': 'Booked'} />
-            <Mark icon={<GoLocation size={16} />} text={address} />
-            <Mark
-              icon={<FaRegStar size={16} className=" fill-orange-400" />}
-              text={`${star_rating} (130 reviewed)`}
-            />
-            <Mark
-              icon={
-                room_type === "double" ? (
-                  <HiOutlineUsers size={16} />
-                ) : (
-                  <HiOutlineUser />
-                )
-              }
-              text={room_type}
-            />
-          </Marks>
-          <Button>check out</Button>
-        </CardRow>
-      </article>
-    </CardContext.Provider>
-  );
-}
-export function CardRow({ children }) {
-  return (
-    <div className=" col-span-2 row-span-2 p-2 flex flex-col">{children}</div>
-  );
-}
-export function CardImage({ children }) {
-  return (
-    <div className=" overflow-hidden object-cover  p-0 m-0 w-full col-span-2 row-span-2">
-      {children}
-    </div>
-  );
-}
-export function Description({ children }) {
-  return (
-    <p className="text-stone-500 p-1 text-[10px] font-poppins">{children}</p>
-  );
-}
-export function PriceAndName({ children }) {
-  return <div className="flex justify-between p-1">{children}</div>;
-}
-export function Marks({ children }) {
-  return <div className="grid grid-cols-2 gap-3 p-1">{children}</div>;
-}
-export function Button({ children }) {
-  const navigate = useNavigate();
-  const { id, hotel_name } = useContext(CardContext);
-  const [searchParmas, setSearchParams] = useSearchParams();
-  return (
-    <button
-      onClick={() => {
-        navigate(`/hotel/${id}`);
-        searchParmas.set("hotel-name", hotel_name);
-        setSearchParams(searchParmas);
+    <motion.div
+      initial={{ scale: 0.9 }}
+      whileInView={{ scale: 1.03 }}
+      viewport={{ amount: 0.3 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        stiffness: 700,
+        damping: 2,
       }}
-      className="py-2 bg-orange-400 hover:bg-orange-500 cursor-pointer font-poppins  px-3 text-lg font-medium  text-white focus:outline-2 focus:outline-orange-400 capitalize tracking-wide max-sm:py-2 max-sm:px-2 max-sm:text-[15px] w-full"
+      className=" hover:bg-sky-200/80 transition-all duration-200 relative bg-sky-100/90 h-full border-transparent group cursor-pointer rounded-lg"
     >
-      {children}
-    </button>
+      <img
+        className="h-48 w-full object-cover object-end rounded-lg"
+        src={images}
+        alt="Home in Countryside"
+      />
+      <div className="p-6">
+        <div className="flex items-baseline gap-1">
+          <span
+            className={`inline-block ${
+              is_available ? "bg-green-400 text-white" : "bg-red-500 text-white"
+            } text-teal-800 py-1 px-2 text-xs rounded-full uppercase font-semibold tracking-wide`}
+          >
+            {is_available ? "isAvailiable" : "Booked"}
+          </span>
+          <div className="ml-2 text-gray-600 text-xs uppercase font-semibold tracking-wide">
+            3 beds &bull; 2 baths &bull; {room_type}
+          </div>
+        </div>
+        <div className=" flex justify-between items-center">
+        <h4 className="mt-2 group-hover:underline group-hover:underline-offset-4 decoration-slate-500  font-semibold text-lg leading-tight truncate capitalize">
+          {hotel_name}
+        </h4>
+         <span className=" text-[14px] font-light">{address}</span>
+        </div>
+
+        <div className="mt-1 flex items-center  justify-between">
+          <div>
+            {discount && (
+              <div className=" line-through">
+                <span className=" text-sm ">{formatCurrency(total_price)}</span>
+                <span className="text-gray-600 text-sm decoration-slate-600 ">/ month</span>
+              </div>
+            )}
+            <div>
+              <span className=" text-[16px] font-semibold">{formatCurrency(todayDiscount)}</span>
+              <span className="text-gray-600 text-md">/ month</span>
+            </div>
+          </div>
+          <span className=" bg-red-400  p-3 rounded-full  flex justify-center items-center text-white"> saved {savedDiscount} <FaPercentage /></span>
+        </div>
+        <div className="mt-2 flex items-center justify-between">
+          <div className=" flex ">
+            <span className="text-yellow-600 flex  font-semibold">
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+            </span>
+            <span className="ml-2 text-gray-600 text-sm">
+              {star_rating} reviews
+            </span>
+          </div>
+          <button className=" px-4 py-2 border border-slate-300 rounded-lg transition-all duration-75 hover:bg-orange-400 hover:text-white cursor-pointer font-semibold">
+            Check Out
+          </button>
+        </div>
+      </div>
+    </motion.div>
   );
 }

@@ -11,7 +11,8 @@ import { FooterList } from "./FooterList";
 import { Link } from "react-router-dom";
 export default function Footer() {
   return (
-    <footer className="w-full mt-3 grid grid-cols-3 grid-rows-3 h-[500px] py-3 px-3 shadow-2xl shadow-stone-500 ">
+    <footer className=" container relative    mx-auto w-full mt-3 grid grid-cols-3 grid-rows-3 h-[500px] py-6 px-6">
+      <div class="absolute top-0 z-[-2] h-screen  bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
       <div className=" basis-2/6 row-span-3">
         <div className="flex flex-col gap-2 ">
           <img src="./logo.png" alt="logo" className=" w-30" />
@@ -29,8 +30,7 @@ export default function Footer() {
           <FaGithub size={20} />
         </div>
         <span className="flex items-center gap-2 max-sm:hidden my-4 px-2   cursor-pointer border-[1px] w-max rounded-sm max-sm:text-sm">
-          <GoDotFill  className="  fill-green-700" /> All System
-          operational
+          <GoDotFill className="  fill-green-700" /> All System operational
         </span>
       </div>
       <ul className=" basis-2/3 h-full col-span-2 row-span-3 grid grid-cols-3 pl-10 max-sm:grid-cols-2   pt-4">
@@ -71,7 +71,7 @@ export default function Footer() {
           <li>Features Request</li>
         </FooterList>
       </ul>
-      <div className=" border-t-[1px] col-span-3 min-h-16 flex justify-between items-center text-stone-400 bg-stone-100">
+      <div className=" border-t-[1px] col-span-3 min-h-16 flex justify-between items-center ">
         <div className="max-sm:text-sm ">
           &copy; 2025 all the rights are reseved by Big-Dream.Co
         </div>

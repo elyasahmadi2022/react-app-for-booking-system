@@ -22,24 +22,15 @@ export default function AppLayout() {
     { label: "services", path: "/services" },
   ];
   return (
-    <div>
+    <section className="container  mx-auto">
       <Header className={"fixed top-0 z-20"}>
         <Header.Logo>
           <Logo className="max-sm:hidden" />
         </Header.Logo>
         <Header.Navs className="bg-orange-400 flex items-center justify-around  box-border">
-          {/* {navList.map((item) => (
-            <NavListItem
-              key={item.label}
-              navitem={item}
-              className={
-                "hover:text-stone-100 transition-all duration-200 h-full navItem"
-              }
-            />
-          ))} */}
           {navList.map((item, index) => (
             <NavLink key={index} to={item.path}>
-            <StaggerNavList item={item} />
+              <StaggerNavList item={item} />
             </NavLink>
           ))}
         </Header.Navs>
@@ -86,28 +77,26 @@ export default function AppLayout() {
               </span>
             </span>
             <div className="w-auto xl:w-12">
-             
-                <LoginModal>
-                  <LoginModal.Toggle id="login">
-                    <AiOutlineUser
-                      size={30}
-                      className=" p-1 outline rounded-full cursor-pointer  hover:bg-orange-300 transition-all duration-300"
-                      color="white"
-                    />
-                  </LoginModal.Toggle>
-                  <LoginModal.Window name="login">
-                    <LoginForm />
-                  </LoginModal.Window>
-                </LoginModal>
-             
+              <LoginModal>
+                <LoginModal.Toggle id="login">
+                  <AiOutlineUser
+                    size={30}
+                    className=" p-1 outline rounded-full cursor-pointer  hover:bg-orange-300 transition-all duration-300"
+                    color="white"
+                  />
+                </LoginModal.Toggle>
+                <LoginModal.Window name="login">
+                  <LoginForm />
+                </LoginModal.Window>
+              </LoginModal>
             </div>
           </div>
         </Header.ToolBar>
       </Header>
-      <main className=" scroll-smooth">
+      <main className="mx-auto scroll-smooth">
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </section>
   );
 }

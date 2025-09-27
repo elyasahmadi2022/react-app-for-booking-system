@@ -11,7 +11,7 @@ export async function getHotels() {
 export async function getAllHotels() {
   let { data, error } = await supabase
     .from("hotels")
-    .select("*, states(*), hotel_rooms(*)");
+    .select("*, states(*), hotel_rooms(*)")
   if (error) throw new Error(error.message);
   return data;
 }
@@ -155,4 +155,22 @@ export async function deleteHotel(id) {
     throw new Error(error);
   }
   return data;
+}
+export async function getHotel(id){
+  
+let { data: hotels, error } = await supabase
+  .from('hotels')
+  .select('*').eq("id", id).single()
+  if (error) throw new Error(error)
+  return hotels
+}
+export async function editHotel({editData, id}){
+const { data, error } = await supabase
+  .from('hotels')
+  .update(editData)
+  .eq('id', id)
+  .select()
+  .single()
+  if (error) throw new Error(error)
+  return data
 }

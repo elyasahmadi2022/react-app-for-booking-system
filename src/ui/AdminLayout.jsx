@@ -1,4 +1,3 @@
-import { CgSearch } from "react-icons/cg";
 import { AiFillGift } from "react-icons/ai";
 import { BiBell } from "react-icons/bi";
 import { BsGear, BsPersonBoundingBox, BsPieChartFill } from "react-icons/bs";
@@ -31,8 +30,8 @@ export default function AdminLayout() {
     { path: "/admin/rooms", label: "rooms" },
   ];
   return (
-    <div className="peer bg-blue-300/30 w-full min-h-screen grid   grid-cols-[0.12fr_.19fr_1fr_auto] sm:grid-cols-[0.06fr_.15fr_1fr_auto] md:grid-cols-[0.04fr_.12fr_1fr_auto] lg:grid-cols-[0.03fr_.10fr_1fr_auto]  grid-rows-[.1fr_auto] ">
-      <Header className="col-start-2 -col-end-3 row-start-1 row-end-2 fixed  shadow-sm z-50">
+    <section className="peer container mx-auto bg-blue-300/30 w-full min-h-screen grid   grid-cols-[0.12fr_.19fr_1fr_auto] sm:grid-cols-[0.06fr_.15fr_1fr_auto] md:grid-cols-[0.04fr_.12fr_1fr_auto] lg:grid-cols-[0.03fr_.10fr_1fr_auto]  grid-rows-[46px_auto] ">
+      <Header className="col-start-2 -col-end-3 row-start-1 row-end-2 fixed  border-b border-slate-300  z-50">
         <Header.ToolBar className={"flex gap-2"}>
           <FaRegUser
             size={30}
@@ -68,27 +67,13 @@ export default function AdminLayout() {
             </span>
           </span>
         </Header.ToolBar>
-        <Header.Navs className='px-2'>
-          <div className="w-2/5 flex gap justify-center items-center relative">
-            <input
-              placeholder="Find out what you are looking for"
-              type="search"
-              className=" placeholder:text-[12px] font-light font-poppins w-[100%] py-1.5  pl-2 border-2 border-slate-700 outline-none rounded-xs"
-            />
-            <span className="flex border-white absolute right-0.5 py-1 px-1  items-center bg-orange-300 border-l-none justify-center ">
-              <CgSearch
-                size={25}
-                color="white"
-                className="stroke-neutral-600"
-              />
-            </span>
-          </div>
+        <Header.Navs className="px-2">
         </Header.Navs>
         <Header.Logo>
           <Logo />
         </Header.Logo>
       </Header>
-      <AdminSideBar className="peer hover:col-end-3  col-start-1 col-end-2 row-start-2 row-end-4 bg-blue-200/30 flex flex-col gap-2  cursor-pointer transition-all duration-1000 shadow-lg shadow-stone-700/30">
+      <AdminSideBar className="peer container hover:col-end-3  col-start-1 col-end-2 row-start-2 row-end-4  flex flex-col gap-2  cursor-pointer transition-all duration-1000 shadow-lg shadow-stone-700/30">
         <div className="mt-3  relative  w-full h-full group">
           <div className="absolute left-0 h-full flex flex-col  w-full group sidebar ">
             <SideBarItem
@@ -143,9 +128,9 @@ export default function AdminLayout() {
           </div>
         </div>
       </AdminSideBar>
-      <main className="peer-hover:col-start-3 transition-all duration-1000  col-start-2 col-end-4 row-start-2 row-end-4 h-[98%]  w-[95%]  m-auto  shadow-lg shadow-stone-800/30 mt-2 overflow-auto px-3 py-3">
+      <main className="container peer-hover:col-start-3 transition-all  duration-1000  col-start-2 col-end-4 row-start-2 row-end-4 h-auto  w-[95%]  mx-auto  overflow-auto py-4">
         <Outlet />
       </main>
-    </div>
+    </section>
   );
 }

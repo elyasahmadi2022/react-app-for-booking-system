@@ -1,9 +1,12 @@
 import React from 'react'
 
-function HotelTable({children}) {
+function HotelTable({children, topHeader, pagination}) {
+  
   return (
-    <div className='w-[85%] md:w-[90%] lg:w-[95%] m-auto mt-2 table overflow-x-auto relative'>
-      {children}
+    <div className='w-full overflow-x-auto   m-auto  mt-2'>
+      <div className='w-full my-1'>{topHeader}</div>
+      <div className='w-full  table relative'>{children}</div>
+      <div className='w-full mx-auto flex justify-end items-center py-2'>{pagination}</div>
     </div>
   )
 }

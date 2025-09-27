@@ -1,10 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, {  createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import { useOutSideClick } from "../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "framer-motion";
-
+import { CgClose } from "react-icons/cg";
+import { variants } from "../features/hotels/HotelModal";
 const ModalContext = createContext();
 
 export function useModal() {
@@ -22,45 +23,52 @@ export default function NewModal({ children, className }) {
 
   return (
     <ModalContext.Provider value={{ close, open, openName }}>
-      <div className={`relative  ${className}`}>
-      {children}
-
-      </div>
+      <div className={`relative  ${className}`}>{children}</div>
     </ModalContext.Provider>
   );
 }
 
 function Open({ children, opens: openWindowName }) {
   const { open } = useModal();
-  return React.cloneElement(children, { 
+  return React.cloneElement(children, {
     onClick: () => {
       // e.stopPropagation();
       open(openWindowName);
-    }
+    },
   });
 }
 
-function Window({ children, name , className}) {
+function Window({ children, name, className }) {
   const { openName, close } = useModal();
+
   const ref = useOutSideClick(close);
   return createPortal(
     <AnimatePresence>
       {openName === name && (
-
-    <motion.div initial={{opacity:0, scale:0}} animate={{opacity:1, scale:1}} transition={{duration:0.123, stiffness:1000}}  exit={{opacity:0,transition: {duration: 0.9, stiffness: 1000}}}  className={`w-full h-screen absolute top-0 bottom-0 inset-0  bg-white/40 backdrop-blur-sm transition-all duration-500 z-50`}>
-      <motion.div 
-        ref={ref}
-        className={`absolute  left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl p-2 transition-all duration-500 min-w-[400px] ${className}`}
-      >
-        <button
-          onClick={close}
-          className="absolute top-3 right-5 bg-none cursor-pointer z-10 border-none p-1 rounded-sm transition-all duration-200 hover:bg-gray-100"
+        <motion.div
+          variants={variants}
+          initial="hidden"
+          animate="visible"
+          className=" absolute inset-0  w-full flex justify-center items-center  min-h-screen bg-white/50 backdrop-blur-xs z-50"
         >
-          <HiXMark className="w-6 h-6 text-gray-500" />
-        </button>
-        {children}
-      </motion.div>
-    </motion.div>
+          {name !== "delete" && name !== "edit" ? (
+            <motion.div
+              variants={variants}
+              exit="exit"
+              ref={ref}
+              className="relative w-auto h-auto [&>*]:text-sm md:[&>*]:text-[15px]    lg:w-[60%]   bg-white  shadow-md"
+            >
+              <CgClose
+                size={20}
+                className="absolute top-2 right-2 cursor-pointer z-10"
+                onClick={close}
+              />
+              {children}
+            </motion.div>
+          ) : (
+            children
+          )}
+        </motion.div>
       )}
     </AnimatePresence>,
     document.body

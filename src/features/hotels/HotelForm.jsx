@@ -1,19 +1,22 @@
 import { useForm } from "react-hook-form";
 import { ImSpinner10 } from "react-icons/im";
 import { useSearchParams } from "react-router-dom";
-import { useCountries, useStateByCountry, useStateCities } from "../../services/apiCountry";
+import {
+  useCountries,
+  useStateByCountry,
+  useStateCities,
+} from "../../services/apiCountry";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Option from "../../ui/Option";
 import { Select } from "../../ui/Select";
 import Spinner from "../../ui/Spinner";
 import TextArea from "../../ui/TextArea";
-import FileInput from './../../ui/FileInput';
+import FileInput from "./../../ui/FileInput";
 
-function HotelForm({ isCreating, task, formSubmit, heading}) {
-     const { cities } = useStateCities();
+function HotelForm({ isCreating, task, formSubmit, heading, register, formState, handleSubmit }) {
+  const { cities } = useStateCities();
   const { data: prov } = useStateByCountry();
-  const { register, formState, handleSubmit } = useForm();
   const {
     errors: {
       hotel_name,
@@ -32,7 +35,7 @@ function HotelForm({ isCreating, task, formSubmit, heading}) {
   const [searchParams, setSearchParams] = useSearchParams();
   if (isLoading)
     return (
-      <div className=" w-full h-full flex justify-center items-center">
+      <div className=" bg-transparent   w-full my-2 h-full flex justify-center items-center">
         <Spinner />
       </div>
     );
@@ -40,9 +43,9 @@ function HotelForm({ isCreating, task, formSubmit, heading}) {
     <form
       noValidate
       onSubmit={handleSubmit(formSubmit)}
-      className={`relative px-3  w-full grid grid-cols-[1fr_0.5fr_0.5fr_1fr] gap-1.5  grid-rows-[0.1fr_0.3fr_0.3fr_0.3fr_0.3fr_0.3fr]`}
+      className={`relative p-5  w-full grid grid-cols-[1fr_0.5fr_0.5fr_1fr]   grid-rows-[0.1fr_0.3fr_0.3fr_0.3fr_0.3fr_0.3fr]`}
     >
-      <div className=" col-span-4 row-start-1 row-end-2 pl-3 py-2 border-b-2 border-gray-500">
+      <div className=" col-span-4 row-start-1 row-end-2 pl-3 pb-2 border-b-2 border-slate-300 text-slate-600">
         {heading}
       </div>
       <FormRow
@@ -108,21 +111,6 @@ function HotelForm({ isCreating, task, formSubmit, heading}) {
           placeholder="Type Price a night"
         />
       </FormRow>
-      <FormRow
-        label="description"
-        className="col-span-2"
-        error={description?.message}
-      >
-        <TextArea
-          disabled={isCreating}
-          register={register("description", {
-            required: "The field needs to be filled",
-          })}
-          className=" col-start-1 col-end-3 row-start-5 row-end-6"
-          id="description"
-          placeholder="Type the description of the hotel"
-        />
-      </FormRow>
       <FormRow label="Country" className="col-span-2" error={country?.message}>
         <Select
           disabled={isCreating}
@@ -184,27 +172,40 @@ function HotelForm({ isCreating, task, formSubmit, heading}) {
           ))}
         </Select>
       </FormRow>
-
-      <FileInput
-        type="simple"
-        register={register("images")}
-        message="select the image of the hotel"
-        className="mx-2 col-span-2   m-auto   bg-orange-200/30  border-2  relative   border-dashed border-orange-300  flex  justify-start gap-2 items-center py-1 rounded-sm"
-        error={images?.message}
-        acccept="image/*"
-      />
-
-      <button
-        disabled={isCreating}
-        className="outline-2 p-3 absolute -bottom-14 flex items-center gap-2 capitalize tracking-wide  right-4 cursor-pointer bg-orange-400 outline-white  text-white hover:bg-orange-400/80 "
+      <FormRow className=" col-span-2" label="Select Hotel Image">
+        <FileInput
+          type="simple"
+          register={register("images")}
+          label="Select The Hotel Image"
+          className="mx-2 col-span-2   m-auto   bg-orange-200/30  border-2  relative   border-dashed border-orange-300  flex  justify-start gap-2 items-center py-1 rounded-sm"
+          error={images?.message}
+          acccept="image/*"
+        />
+      </FormRow>
+      <FormRow
+        label="description"
+        className="col-span-2"
+        error={description?.message}
       >
-        {isCreating && (
-          <span>
-            <ImSpinner10 size={20} className="animate-spin" />
+        <TextArea
+          row={2}
+          disabled={isCreating}
+          register={register("description", {
+            required: "The field needs to be filled",
+          })}
+          className=" col-start-1 col-end-3 row-start-5 row-end-6"
+          id="description"
+          placeholder="Type the description of the hotel"
+        />
+      </FormRow>
+      <div className="col-start-4 col-end-5 relative  row-start-6  row-end-7  ">
+        <button disabled={isCreating} className=" absolute flex bottom-2 right-2 items-center  justify-center rounded-md bg-green-500 shadow-[0_6px_24px_rgba(0,0,0,0.2)] overflow-hidden cursor-pointer border-0 disabled:cursor-not-allowed group">
+          <span className="absolute inset-0 w-0 bg-white transition-all duration-400 ease-in-out group-hover:w-full"></span>
+          <span className="relative z-10 px-6 py-4 text-white text-lg font-bold  transition-all duration-300 ease-in-out group-hover:text-[#183153] group-hover:scale-95 group-hover:animate-pulse">
+           {task}
           </span>
-        )}
-        <span> {task}</span>
-      </button>
+        </button>
+      </div>
     </form>
   );
 }

@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import MenuBarProvider, { useMenuBar } from "../../ui/MenuBarProvider";
 import { useOutSideClick } from "../../hooks/useClickOutSide";
 import { AnimatePresence, motion } from "framer-motion";
-const variants = {
+export const variants = {
   hidden: {
     opacity: 0,
     scale: 0,
@@ -30,7 +30,7 @@ const variants = {
 function HotelModal({ children }) {
   return (
     <MenuBarProvider>
-      <div className="relative">{children}</div>
+      <div className="relative w-[95%]  mx-auto  flex justify-between">{children}</div>
     </MenuBarProvider>
   );
 }
@@ -53,13 +53,13 @@ function Window({ children, id }) {
             variants={variants}
             initial="hidden"
             animate="visible"
-            className=" absolute inset-0 w-full flex justify-center items-center  min-h-screen bg-white/50 backdrop-blur-xs z-50"
+            className=" absolute inset-0  w-full flex justify-center items-center  min-h-screen bg-white/50 backdrop-blur-xs z-50"
           >
             <motion.div
               variants={variants}
               exit="exit"
               ref={ref}
-              className=" overflow-y-auto relative top-2/4 -translate-y-2/4 w-[95%] md:[80%] [&>*]:text-sm md:[&>*]:text-[15px]   lg:w-[60%] h-[530px]  bg-white  shadow-md"
+              className="relative  w-[95%] md:[80%] [&>*]:text-sm md:[&>*]:text-[15px] h-[95%]   lg:w-[60%]   bg-white  shadow-md"
             >
               <CgClose
                 size={20}

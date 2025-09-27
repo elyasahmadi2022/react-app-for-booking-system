@@ -3,7 +3,7 @@ const HeaderContext = createContext();
 export default function Header({ children, className }) {
   return (
     <HeaderContext.Provider value={{}}>
-      <header className={`w-full   bg-stone-100/10 h-12 p-0 box-border ${className}`}>{children}</header>
+      <header className={`w-full container mx-auto   bg-stone-100/10 h-12 p-0 box-border ${className}`}>{children}</header>
     </HeaderContext.Provider>
   );
 }

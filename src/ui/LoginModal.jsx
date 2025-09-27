@@ -39,17 +39,19 @@ function Window({ children, name }) {
         <motion.div
           initial={{
             opacity: 0,
-            scale: 0,
           }}
           animate={{
             opacity: 1,
-            scale: 1,
           }}
-          exit={{ opacity: 0, scale: 0.4 }}
-          transition={{ duration: 0.4, stiffness: 1000 }}
-          className="z-50 backdrop-blur-xs  fixed top-2/4 left-2/4 -translate-2/4 w-full min-h-screen flex justify-center items-center bg-stone-100/80"
+          exit={{opacity:0}}
+          transition={{duration: 0.123}}
+          className="bg-slate-900/20 backdrop-blur container mx-auto  p-8 fixed inset-0 z-50 grid place-items-center overflow-y-scroll cursor-pointer"
         >
           <motion.div
+            initial={{ scale: 0, rotate: "12.5deg" }}
+            animate={{ scale: 1, rotate: "0deg" }}
+            exit={{ scale: 0, rotate: "0deg" }}
+
             ref={ref}
             className={`relative  bg-stone-100 rounded-sm shadow-2xl px-2 py-2 box-border  h-[80vh] xl:w-2/6  lg:w-2/5  md:w-2/4  max-md:w-2/3 max-sm:w-2/3  transition-all duration-300 flex items-center justify-center`}
           >

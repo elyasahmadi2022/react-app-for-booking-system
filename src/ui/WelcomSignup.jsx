@@ -6,67 +6,54 @@ import { Link } from "react-router-dom";
 import Box from "./Box";
 import FormRow from "./FormRow";
 import GroupInput from "./GroupInput";
-import bg from "/3.jpg"
+import bg from "/3.jpg";
+import LoginForm from "./LoginForm";
 function WelcomSignup() {
   return (
-    <article className=" grid grid-cols-1 md:grid-cols-2 w-full h-screen">
-      <div className="w-full col-span-2 md:col-start-1 md:col-end-3 lg:col-start-1 lg:col-end-2">
-        <form
-          className="h-2/3 md:w-[90%] w-full mx-auto  lg:w-[70%] flex flex-col justify-center gap-4 font-poppins"
-
-        >
-          <Box>
-            <h2 className=" mt-2  col-span-3 text-2xl max-lg:text-lg row-span-2 text-center font-semibold font-poppins">
-              happy to see u back
-            </h2>
-          </Box>
-          <FormRow label="email" className=' mx-auto md:w-[90%] w-[70%] '>
-            <GroupInput
-              id="email"
-              type="email"
-              placeholder="Enter Email"
-              icon={<HiOutlineMail size={20} />}
-            />
-          </FormRow>
-          <FormRow label="password" className=' mx-auto md:w-[90%] w-[70%]'>
-            <GroupInput
-              id="password"
-              type="password"
-              placeholder="Enter Password"
-              icon={<RiLockPasswordLine size={20} />}
-            />
-          </FormRow>
-          <Box>
-            <div className="mx-auto md:w-[90%] w-[70%]">
-              <button className="py-3 flex gap-2 justify-center items-center bg-orange-400 hover:bg-orange-500 cursor-pointer border-2 border-orange-400 px-3 text-lg font-bold text-white rounded-sm focus:outline-2 focus:outline-orange-400 outline-offset-2 capitalize tracking-wide max-sm:py-2 max-sm:px-2 max-sm:text-[15px] w-full">
-                {/* {isLoading && (
-                  <span>
-                    <CgSpinner className={`animate-spin`} />
-                  </span>
-                )} */}
-                Login
-              </button>
-            </div>
-          </Box>
-          <Link
-            to="/account/signup"
-            className="text-center hover:underline text-lg"
-          >
-            create a new account
-          </Link>
-        </form>
-        <div className=" flex items-center  mx-auto md:w-[90%] w-[70%] lg:w-[70%]">
+    <article className="container  mx-auto  grid grid-cols-1 md:grid-cols-2 w-full  h-screen">
+      <div className="w-full   col-span-2 sm:col-span-2 mx-auto  md:col-start-1 md:col-end-3 lg:col-start-1 lg:col-end-2">
+        <div className=" w-full mx-auto  md:w-[80%]  flex justify-center items-center flex-col">
+          <LoginForm />
+          <div className=" flex items-center  mx-auto md:w-[90%] w-[70%] lg:w-[70%]">
             <div className=" flex-1 h-0.5 bg-stone-800/30"></div>
-            <div className=" mx-3 font-medium">or continue with</div>
+            <div className=" mx-3 font-medium text-slate-600">
+              or continue with
+            </div>
             <div className="flex-1 h-0.5 bg-stone-800/30"></div>
-        </div>
-        <div className="flex items-center justify-around md:w-[90%] w-[70%] lg:w-[70%]   py-3 mx-auto">
-                <button className="border p-3 flex items-center justify-center gap-2 cursor-pointer hover:bg-orange-400 hover:text-white transition-all duration-300"><span className=" font-medium capitalize tracking-wide">Google</span><FcGoogle  size={25}/></button>
-                <button className="border p-3 flex items-center justify-center gap-2 cursor-pointer hover:bg-orange-400 hover:text-white transition-all duration-300"><span className=" font-medium capitalize tracking-wide">Facebook</span><BsGithub size={25} /></button>
+          </div>
+          <div class="grid space-y-2  w-full mx-auto  md:w-[80%] lg:w-[80%]">
+            <button class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
+              <div class="relative flex items-center space-x-4 justify-center">
+                <img
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  class="absolute left-0 w-5"
+                  alt="google logo"
+                />
+                <span class="block w-max font-semibold tracking-wide text-gray-700 dark:text-white text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
+                  Continue with Google
+                </span>
+              </div>
+            </button>
+            <button class="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
+              <div class="relative flex items-center space-x-4 justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  class="absolute left-0 w-5 text-gray-700"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                <span class="block w-max font-semibold tracking-wide text-gray-700 text-sm transition dark:text-white duration-300 group-hover:text-blue-600 sm:text-base">
+                  Continue with Github
+                </span>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
       <div className="col-span-1  hidden lg:flex justify-center items-center lg:col-start-2 lg:col-span-1   md:col-end-4">
-        <img src={bg} alt='bg' className="w-full h-auto"/>
+        <img src={bg} alt="bg" className="w-full h-auto" />
       </div>
     </article>
   );

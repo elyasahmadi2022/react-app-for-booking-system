@@ -2,30 +2,28 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import CSS
+import Activities from "./pages/Activities";
+import Bookings from "./pages/Bookings";
 import Cities from "./pages/Cities";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Hotel from "./pages/Hotel";
+import Hotels from "./pages/Hotels";
+import Manage from "./pages/Manage";
 import Payment from "./pages/Payment";
 import Services from "./pages/Services";
+import Settings from "./pages/Settings";
+import Shopping from "./pages/Shopping";
 import SignUp from "./pages/SignUp";
 import TravelGuides from "./pages/TravelGuides";
 import Users from "./pages/Users";
 import AccountLayout from "./ui/AccountLayout";
 import AdminLayout from "./ui/AdminLayout";
 import AppLayout from "./ui/AppLayout";
-import Error from "./ui/Error";
 import { GlobalProvider } from "./ui/GlobalContext";
-import Settings from "./pages/Settings";
 import WelcomSignup from "./ui/WelcomSignup";
-import Hotels from "./pages/Hotels";
-import Bookings from "./pages/Bookings";
-import Shopping from "./pages/Shopping";
-import Manage from "./pages/Manage";
-import Activities from "./pages/Activities";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import CSS
-import { Bounce } from 'react-toastify';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -39,7 +37,6 @@ function App() {
     {
       path: "/",
       Component: AppLayout,
-      errorElement: <Error />,
       children: [
         {
           path: "/",
@@ -74,6 +71,7 @@ function App() {
     {
       path: "/account/",
       Component: AccountLayout,
+
       children: [
         {
           path: "login",
@@ -88,6 +86,7 @@ function App() {
     {
       path: "/admin/",
       Component: AdminLayout,
+
       children: [
         {
           path: "dashboard",
@@ -148,6 +147,7 @@ function App() {
         pauseOnHover
         theme="light"
         transition={Bounce}
+        className="z-[50]"
       />
     </GlobalProvider>
   );
